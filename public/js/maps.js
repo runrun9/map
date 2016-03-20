@@ -1,15 +1,15 @@
 function initialize() {
-  var useragent = navigator.userAgent;
+  // var useragent = navigator.userAgent;
   var mapdiv = document.getElementById("map_canvas");
 
-  if (useragent.indexOf('iPhone') != -1 || useragent.indexOf('Android') != -1 ) {
-    mapdiv.style.width = '600px';
-    mapdiv.style.height = '600px';
-  } else {
-    mapdiv.style.width = '600px';
-    mapdiv.style.height = '600px';
-  }
-  var latlng = new google.maps.LatLng(35.873438, 139.731934);
+  // if (useragent.indexOf('iPhone') != -1 || useragent.indexOf('Android') != -1 ) {
+  //   mapdiv.style.width = '600px';
+  //   mapdiv.style.height = '600px';
+  // } else {
+  //   mapdiv.style.width = '600px';
+  //   mapdiv.style.height = '600px';
+  // }
+  var latlng = new google.maps.LatLng(35.681382, 139.766084);
   var opts = {
     zoom: 15,
     center: latlng,
