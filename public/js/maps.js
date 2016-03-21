@@ -1,14 +1,9 @@
-function initialize() {
-  // var useragent = navigator.userAgent;
-  var mapdiv = document.getElementById("map_canvas");
+var fps=1000/30;
+var marker;
 
-  // if (useragent.indexOf('iPhone') != -1 || useragent.indexOf('Android') != -1 ) {
-  //   mapdiv.style.width = '600px';
-  //   mapdiv.style.height = '600px';
-  // } else {
-  //   mapdiv.style.width = '600px';
-  //   mapdiv.style.height = '600px';
-  // }
+function initialize() {
+  //map表示
+  var mapdiv = document.getElementById("map_canvas");
   var latlng = new google.maps.LatLng(35.681382, 139.766084);
   var opts = {
     zoom: 15,
@@ -17,15 +12,52 @@ function initialize() {
   };
   var map = new google.maps.Map(mapdiv, opts);
 
-  if(navigator.geolocation){
-    navigator.geolocation.getCurrentPosition(function(position){
-      map.setCenter(new google.maps.LatLng(position.coords.latitude,position.coords.longitude));
-    },function(){
-      alert("現在地を取得できません");
-    })
-  }else{
-    alert("ブラウザが対応していません");
+//現在地取得
+  if (navigator.geolocation) {
+         navigator.geolocation.getCurrentPosition(successCallback,errorCallback);
+     } else {
+       alert("ブラウザが対応していません");
+     }
+
+  function successCallback(position) {
+    //成功したときの処理
+    map.setCenter(new google.maps.LatLng(position.coords.latitude,position.coords.longitude));
+    // result = '緯度:' + position.coords.latitude + '<br />';
+    // result += '経度:' + position.coords.longitude + '<br />';
+    // document.getElementById("geo").innerHTML = result;
+
+    //初期マーカー作成
+      marker = new google.maps.Marker({
+      position: new google.maps.LatLng(position.coords.latitude,position.coords.longitude),
+      map: map,
+      title: "ワイ"
+    });
+
+    //GPS更新
+    var options = { enableHighAccuracy: true };
+    watchId = navigator.geolocation.watchPosition(onSuccess,errorCallback,options);
   }
+  function errorCallback(error) {
+     //失敗のときの処理
+     alert("現在地を取得できません");
+  }
+
+  function onSuccess(position){
+    marker.setPosition(new google.maps.LatLng(position.coords.latitude,position.coords.longitude));
+    console.log("GPS更新");
+  }
+
+  //ループ
+  // function loop(){
+  //   navigator.geolocation.getCurrentPosition(successCallbackloop,errorCallbackloop);
+  //   function successCallbackloop(position) {
+  //     marker.setPosition(new google.maps.LatLng(position.coords.latitude,position.coords.longitude));
+  //   }
+  //   function errorCallbackloop(error) {
+  //      //失敗のときの処理
+  //      alert("現在地を取得できません");
+  //   }
+  // }
 
 //クリックでマーカー
   // google.maps.event.addListener(map,"click",function(event){
@@ -55,5 +87,5 @@ function initialize() {
   // google.maps.event.addListener(marker,"click",function(event){
   //   infoWindow.open(map,marker);
   // });
-
+// startFunc();
 }
