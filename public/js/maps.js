@@ -1,4 +1,4 @@
-var fps=1000/30;
+﻿var fps=1000/30;
 var marker;
 
 function initialize() {
@@ -30,7 +30,7 @@ function initialize() {
       marker = new google.maps.Marker({
       position: new google.maps.LatLng(position.coords.latitude,position.coords.longitude),
       map: map,
-      title: "ワイ"
+      title: "自分"
     });
 
     //GPS更新
