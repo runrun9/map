@@ -30,7 +30,7 @@ function initialize() {
       // document.getElementById("geo").innerHTML = result;
 
       //初期マーカー作成
-        marker[my_marker] = new google.maps.Marker({
+        marker[0] = new google.maps.Marker({
         position: new google.maps.LatLng(position.coords.latitude,position.coords.longitude),
         map: map,
         title: "自分"
@@ -46,7 +46,7 @@ function initialize() {
     }
 
     function onSuccess(position){
-      marker[my_marker].setPosition(new google.maps.LatLng(position.coords.latitude,position.coords.longitude));
+      marker[0].setPosition(new google.maps.LatLng(position.coords.latitude,position.coords.longitude));
       console.log("GPS更新");
       socket.json.emit("emit_from_client_point",{
         latitude: position.coords.latitude,
