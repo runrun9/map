@@ -69,8 +69,8 @@ function initialize() {
 
     //他クライアントマーカー削除
     socket.on("disconnect_message",function(data){
-      if(marker[data.id]){
-        marker[data.id].setMap(null);
+      if(marker[data]){
+        marker[data].setMap(null);
         console.log(data+"削除");
       }else{
         console.log(data+"削除失敗");
