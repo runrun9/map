@@ -71,6 +71,9 @@ function initialize() {
     socket.on("disconnect_message",function(data){
       if(marker[data.id]){
         marker[data.id].setMap(null);
+        console.log(data.id+"削除");
+      }else{
+        console.log(data.id+"削除失敗");
       }
     });
 
