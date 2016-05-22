@@ -30,7 +30,7 @@ function initialize() {
       // document.getElementById("geo").innerHTML = result;
 
       //初期マーカー作成
-        marker[0] = new google.maps.Marker({
+        marker["my_marker"] = new google.maps.Marker({
         position: new google.maps.LatLng(position.coords.latitude,position.coords.longitude),
         map: map,
         title: "自分"
@@ -46,13 +46,26 @@ function initialize() {
     }
 
     function onSuccess(position){
-      marker[0].setPosition(new google.maps.LatLng(position.coords.latitude,position.coords.longitude));
+      marker["my_marker"].setPosition(new google.maps.LatLng(position.coords.latitude,position.coords.longitude));
       console.log("GPS更新");
       socket.json.emit("emit_from_client_point",{
         latitude: position.coords.latitude,
         longitude: position.coords.longitude
       });
     }
+
+    //他クライアントのマーカー更新
+    socket.on("emit_from_server_point",function(data){
+      if(!marker[data.id]){
+        marker[data.id] = new google.maps.Marker({
+        position: new google.maps.LatLng(data.latitude,data.longitude),
+        map: map,
+        title: data.id
+        });
+      }else{
+        marker[data.id].setPosition(new google.maps.LatLng(data.latitude,data.longitude));
+      }
+    });
 
     //ループ
     // function loop(){

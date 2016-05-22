@@ -13,6 +13,11 @@ io.sockets.on("connection",function(socket){
 	count++;
 	socket.on("emit_from_client_point",function(data){
 		console.log(socket.id+" : "+data.latitude+" , "+data.longitude+" , count : "+count);
+		socket.json.broadcast.emit("emit_from_server_point",{
+			id: socket.id,
+			latitude: data.latitude,
+			longitude: data.longitude
+		});
 	});
 
 	socket.on("disconnect", function () {
