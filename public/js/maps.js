@@ -1,5 +1,5 @@
 ﻿var fps=1000/30;
-var marker;
+var marker=new Object();
 var client0,client1,client2,client3,client4;
 
 function initialize() {
@@ -30,7 +30,7 @@ function initialize() {
       // document.getElementById("geo").innerHTML = result;
 
       //初期マーカー作成
-        marker = new google.maps.Marker({
+        marker[my_marker] = new google.maps.Marker({
         position: new google.maps.LatLng(position.coords.latitude,position.coords.longitude),
         map: map,
         title: "自分"
@@ -46,7 +46,7 @@ function initialize() {
     }
 
     function onSuccess(position){
-      marker.setPosition(new google.maps.LatLng(position.coords.latitude,position.coords.longitude));
+      marker[my_marker].setPosition(new google.maps.LatLng(position.coords.latitude,position.coords.longitude));
       console.log("GPS更新");
       socket.json.emit("emit_from_client_point",{
         latitude: position.coords.latitude,

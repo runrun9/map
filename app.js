@@ -12,8 +12,7 @@ console.log("server starting");
 io.sockets.on("connection",function(socket){
 	count++;
 	socket.on("emit_from_client_point",function(data){
-		console.log("\n"+socket.id+" : "+data.latitude+" , "+data.longitude);
-		console.log("count : "+count);
+		console.log(socket.id+" : "+data.latitude+" , "+data.longitude+" , count : "+count);
 	});
 
 	socket.on("disconnect", function () {
