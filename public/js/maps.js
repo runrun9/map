@@ -1,5 +1,6 @@
 ﻿var fps=1000/30;
 var marker;
+var client0,client1,client2,client3,client4;
 
 function initialize() {
   $(function(){
