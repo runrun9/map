@@ -6,7 +6,7 @@ var io = require('socket.io').listen(http);
 var count=0;
 
 app.use(express.static(__dirname+"/public"));
-http.listen(process.env.PORT || 3000);
+http.listen(3000);
 console.log("server starting");
 
 io.sockets.on("connection",function(socket){
