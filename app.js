@@ -22,6 +22,7 @@ io.sockets.on("connection",function(socket){
 
 	socket.on("disconnect", function () {
 		count--;
+		socket.broadcast.emit("disconnect_message",socket.id);
 	});
 
 });

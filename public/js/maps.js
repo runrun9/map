@@ -67,6 +67,13 @@ function initialize() {
       }
     });
 
+    //他クライアントマーカー削除
+    socket.on("disconnect_message",function(data){
+      if(marker[data.id]){
+        marker[data.id].setMap(null);
+      }
+    });
+
     //ループ
     // function loop(){
     //   navigator.geolocation.getCurrentPosition(successCallbackloop,errorCallbackloop);
