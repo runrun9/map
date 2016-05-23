@@ -1,6 +1,6 @@
 ﻿var fps=1000/30;
 var marker=new Object();
-var client0,client1,client2,client3,client4;
+var count=0;
 
 function initialize() {
   $(function(){
@@ -14,6 +14,19 @@ function initialize() {
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
     var map = new google.maps.Map(mapdiv, opts);
+
+    //コンテナ作成
+    var container = document.createElement('div');
+    createContainer(container);
+    map.controls[google.maps.ControlPosition.BOTTOM_RIGHT].push(container);
+
+    function createContainer(container) {
+      container.style.margin = '10px';
+      container.style.padding = '10px';
+      container.style.border = '1px solid #000';
+      container.style.background = '#FFF';
+      container.innerText = "同時接続人数 : "+count;
+    }
 
   //現在地取得
     if (navigator.geolocation) {
@@ -75,6 +88,13 @@ function initialize() {
       }else{
         console.log(data+"削除失敗");
       }
+    });
+
+    //同時接続人数reset
+    socket.on("reset_count",function(data){
+      count=data;
+      console.log(data);
+      container.innerText = "同時接続人数 : "+count;
     });
 
     //ループ
