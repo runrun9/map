@@ -89,6 +89,13 @@ function initialize() {
         map: map,
         title: data.id
         });
+        //吹き出し作成
+        infoWindow[data.id] = new google.maps.InfoWindow({
+          content: '<div class="infoWindow">部屋 : '+data.room+'</div>'
+        });
+        marker[data.id].addListener('click', function() { // マーカーをクリックしたとき
+          infoWindow[data.id].open(map, marker["my_marker"]); // 吹き出しの表示
+        });
       }else{
         marker[data.id].setPosition(new google.maps.LatLng(data.latitude,data.longitude));
       }

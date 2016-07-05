@@ -21,6 +21,7 @@ io.sockets.on("connection",function(socket){
 		console.log(socket.id+" : "+data.latitude+" , "+data.longitude+" , count : "+count);
 		socket.json.broadcast.to(id_room[socket.id]).emit("emit_from_server_point",{
 			id: socket.id,
+			room: id_room[socket.id],
 			latitude: data.latitude,
 			longitude: data.longitude
 		});
