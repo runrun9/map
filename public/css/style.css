@@ -7,4 +7,17 @@ html, body {
 #map_canvas {
     width         : 100%;
     height        : 100%;
+    z-index: 0;
+}
+#form {
+  left:120px;
+  top:10px;
+  position:absolute;
+  z-index:1;
+}
+#button {
+  left:330px;
+  top:10px;
+  position:absolute;
+  z-index:1;
 }

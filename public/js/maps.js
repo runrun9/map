@@ -1,6 +1,7 @@
 ﻿var fps=1000/30;
 var marker=new Object();
 var count=0;
+var roomname=null;
 
 function initialize() {
   $(function(){
@@ -95,6 +96,15 @@ function initialize() {
       count=data;
       console.log(data);
       container.innerText = "同時接続人数 : "+count;
+    });
+
+    //入室
+    $("#roomForm").submit(function(e){
+      e.preventDefault();
+      roomname=$("#form").val();
+      socket.emit("emit_from_client_in",roomname);
+      $("#roomForm").remove();
+      console.log(roomname);
     });
 
     //ループ
