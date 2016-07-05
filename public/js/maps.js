@@ -103,7 +103,7 @@ function initialize() {
 
     //他クライアントマーカークリック時処理
     function click_infoWindow(id){
-      infoWindow[id].open(map, marker["my_marker"]); // 吹き出しの表示
+      infoWindow[id].open(map, marker[id]); // 吹き出しの表示
     }
 
     //他クライアントマーカー削除
