@@ -13,6 +13,8 @@ console.log("server starting");
 
 io.sockets.on("connection",function(socket){
 	count++;
+	//id送信
+	socket.emit("emit_id",socket.id);
 	socket.emit("reset_count",count);
 	socket.broadcast.emit("reset_count",count);
 	socket.on("emit_from_client_point",function(data){

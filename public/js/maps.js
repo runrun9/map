@@ -1,7 +1,9 @@
 ﻿var fps=1000/30;
 var marker=new Object();
+var infoWindow=new Object();
 var count=0;
 var roomname=null;
+var id=null;
 
 function initialize() {
   $(function(){
@@ -44,10 +46,16 @@ function initialize() {
       // document.getElementById("geo").innerHTML = result;
 
       //初期マーカー作成
-        marker["my_marker"] = new google.maps.Marker({
+      marker["my_marker"] = new google.maps.Marker({
         position: new google.maps.LatLng(position.coords.latitude,position.coords.longitude),
         map: map,
         title: "自分"
+      });
+      //吹き出し作成
+      infoWindow[id] = new google.maps.InfoWindow();
+      marker["my_marker"].addListener('click', function() { // マーカーをクリックしたとき
+        infoWindow[id].setContent('<div class="infoWindow">部屋 : '+roomname+'</div>');
+        infoWindow[id].open(map, marker["my_marker"]); // 吹き出しの表示
       });
 
       //GPS更新
@@ -67,6 +75,11 @@ function initialize() {
         longitude: position.coords.longitude
       });
     }
+
+    //接続時id取得
+    socket.on("emit_id",function(data){
+      id=data;
+    });
 
     //他クライアントのマーカー更新
     socket.on("emit_from_server_point",function(data){
