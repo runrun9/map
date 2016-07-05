@@ -26,6 +26,7 @@ io.sockets.on("connection",function(socket){
 
 	socket.on("disconnect", function () {
 		count--;
+		roomList[id_room[socket.id]]--;
 		socket.leave(id_room[socket.id]);
 		socket.broadcast.emit("disconnect_message",socket.id);
 		socket.broadcast.emit("reset_count",count);
@@ -37,11 +38,15 @@ io.sockets.on("connection",function(socket){
 			roomList[data]=1;
 			socket.join(data);
 			id_room[socket.id]=data;
+			console.log("create : "+data);
+			console.log("count : "+roomList[data]);
 		}
 		else{
 			roomList[data]++;
 			socket.join(data);
 			id_room[socket.id]=data;
+			console.log("joined : "+data);
+			console.log("count : "+roomList[data]);
 		}
 	});
 
