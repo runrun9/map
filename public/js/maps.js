@@ -94,12 +94,17 @@ function initialize() {
           content: '<div class="infoWindow">部屋 : '+data.room+'</div>'
         });
         marker[data.id].addListener('click', function() { // マーカーをクリックしたとき
-          infoWindow[data.id].open(map, marker["my_marker"]); // 吹き出しの表示
+          click_infoWindow(data.id);
         });
       }else{
         marker[data.id].setPosition(new google.maps.LatLng(data.latitude,data.longitude));
       }
     });
+
+    //他クライアントマーカークリック時処理
+    function click_infoWindow(id){
+      infoWindow[id].open(map, marker["my_marker"]); // 吹き出しの表示
+    }
 
     //他クライアントマーカー削除
     socket.on("disconnect_message",function(data){
