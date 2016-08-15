@@ -1,5 +1,6 @@
 var express = require("express"),
 	app = express(),
+	routes = require("./routes/routes"),
 	http = require("http").Server(app);
 var io = require('socket.io').listen(http);
 
@@ -10,6 +11,9 @@ var id_room=new Object();
 app.use(express.static(__dirname+"/public"));
 http.listen(process.env.PORT || 3000);
 console.log("server starting");
+
+//routing
+app.get("/json",routes.json)
 
 io.sockets.on("connection",function(socket){
 	count++;
