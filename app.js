@@ -21,8 +21,9 @@ io.sockets.on("connection",function(socket){
 	socket.emit("emit_id",socket.id);
 	socket.emit("reset_count",count);
 	socket.broadcast.emit("reset_count",count);
+
 	socket.on("emit_from_client_point",function(data){
-		console.log(socket.id+" : "+data.latitude+" , "+data.longitude+" , count : "+count);
+		console.log(socket.id+" : "+data.latitude+" , "+data.longitude+" , to "+id_room[socket.id]+" , count : "+count);
 		socket.json.broadcast.to(id_room[socket.id]).emit("emit_from_server_point",{
 			id: socket.id,
 			room: id_room[socket.id],
@@ -56,5 +57,6 @@ io.sockets.on("connection",function(socket){
 			console.log("count : "+roomList[data]);
 		}
 	});
+
 
 });
