@@ -9,7 +9,7 @@ var roomList=new Object();
 var id_room=new Object();
 
 app.use(express.static(__dirname+"/public"));
-http.listen(17460);
+http.listen(process.env.PORT || 3000);
 console.log("server starting");
 
 //routing
