@@ -16,6 +16,7 @@ console.log("server starting");
 app.get("/json",routes.json)
 
 io.sockets.on("connection",function(socket){
+	console.log(process.env.PORT);
 	count++;
 	//id送信
 	socket.emit("emit_id",socket.id);
@@ -57,6 +58,5 @@ io.sockets.on("connection",function(socket){
 			console.log("count : "+roomList[data]);
 		}
 	});
-
 
 });
