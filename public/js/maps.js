@@ -132,6 +132,21 @@ function initialize() {
       console.log(roomname);
     });
 
+    //OpenData選択
+    $("li").click(function(e){
+      console.log(e.target.id);
+      socket.emit("get_OpenData",e.target.id);
+    });
+
+    //OpenDataの座標をマーカーとして出力
+    socket.on("set_OpenData",function(data){
+      temporary_marker= new google.maps.Marker({
+        position: new google.maps.LatLng(data.latitude,data.longitude),
+        map: map,
+        icon: "blue2.png"
+      });
+    });
+
     //ループ
     // function loop(){
     //   navigator.geolocation.getCurrentPosition(successCallbackloop,errorCallbackloop);

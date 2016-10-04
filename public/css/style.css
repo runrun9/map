@@ -11,13 +11,24 @@ html, body {
 }
 #form {
   left:120px;
-  top:10px;
+  top:30px;
+  width:150px;
   position:absolute;
   z-index:1;
 }
 #button {
-  left:330px;
-  top:10px;
+  left:270px;
+  top:30px;
   position:absolute;
   z-index:1;
+}
+
+.btn-group{
+  right:120px;
+  top:30px;
+  position:absolute;
+}
+
+li{
+  cursor: pointer;
 }
