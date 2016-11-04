@@ -3,7 +3,7 @@ var express = require("express"),
 	routes = require("./routes/routes"),
 	http = require("http").Server(app);
 var io = require('socket.io').listen(http);
-var request = require("request");
+var http_req = require("http");
 
 var count=0;
 var roomList=new Object();
@@ -24,7 +24,7 @@ io.sockets.on("connection",function(socket){
 	socket.broadcast.emit("reset_count",count);
 
 	socket.on("emit_from_client_point",function(data){
-		console.log(socket.id+" : "+data.latitude+" , "+data.longitude+" , to "+id_room[socket.id]+" , count : "+count);
+		//console.log(socket.id+" : "+data.latitude+" , "+data.longitude+" , to "+id_room[socket.id]+" , count : "+count);
 		socket.json.broadcast.to(id_room[socket.id]).emit("emit_from_server_point",{
 			id: socket.id,
 			room: id_room[socket.id],
@@ -63,24 +63,46 @@ io.sockets.on("connection",function(socket){
 	//OpenData送信
 	socket.on("get_OpenData",function(data){
 		console.log(data);
-		request({
-		    url: data,
-		    json: true
-		}, function (error, response, data) {
-
-		    if (!error && response.statusCode === 200) {
-					for(var i in data){
-						socket.json.emit("set_OpenData",{
-							latitude:data[i]["http://www.w3.org/2003/01/geo/wgs84_pos#lat"][0]["value"],
-							longitude:data[i]["http://www.w3.org/2003/01/geo/wgs84_pos#long"][0]["value"]
-						});
-		      	socket.json.broadcast.to(id_room[socket.id]).emit("set_OpenData",{
-							latitude:data[i]["http://www.w3.org/2003/01/geo/wgs84_pos#lat"][0]["value"],
-							longitude:data[i]["http://www.w3.org/2003/01/geo/wgs84_pos#long"][0]["value"]
-						});
-					}
-		    }
-		})
+		http_req.get(data, function(res){
+			var body = '';
+		  res.setEncoding('utf8');
+			res.on('data', function(chunk){
+		      body += chunk;
+		  });
+		  res.on('end', function(str){
+				data = JSON.parse(body);
+				for(var i in data){
+					socket.json.emit("set_OpenData",{
+						latitude:data[i]["http://www.w3.org/2003/01/geo/wgs84_pos#lat"][0]["value"],
+						longitude:data[i]["http://www.w3.org/2003/01/geo/wgs84_pos#long"][0]["value"]
+					});
+	      	socket.json.broadcast.to(id_room[socket.id]).emit("set_OpenData",{
+						latitude:data[i]["http://www.w3.org/2003/01/geo/wgs84_pos#lat"][0]["value"],
+						longitude:data[i]["http://www.w3.org/2003/01/geo/wgs84_pos#long"][0]["value"]
+					});
+				}
+		  });
+		}).on('error', function(e){
+		  console.log(e.message); //エラー時
+		});
+		// request({
+		//     url: data,
+		//     json: true
+		// }, function (error, response, data) {
+		//
+		//     if (!error && response.statusCode === 200) {
+		// 			for(var i in data){
+		// 				socket.json.emit("set_OpenData",{
+		// 					latitude:data[i]["http://www.w3.org/2003/01/geo/wgs84_pos#lat"][0]["value"],
+		// 					longitude:data[i]["http://www.w3.org/2003/01/geo/wgs84_pos#long"][0]["value"]
+		// 				});
+		//       	socket.json.broadcast.to(id_room[socket.id]).emit("set_OpenData",{
+		// 					latitude:data[i]["http://www.w3.org/2003/01/geo/wgs84_pos#lat"][0]["value"],
+		// 					longitude:data[i]["http://www.w3.org/2003/01/geo/wgs84_pos#long"][0]["value"]
+		// 				});
+		// 			}
+		//     }
+		// })
 	});
 
 });
