@@ -85,24 +85,6 @@ io.sockets.on("connection",function(socket){
 		}).on('error', function(e){
 		  console.log(e.message); //エラー時
 		});
-		// request({
-		//     url: data,
-		//     json: true
-		// }, function (error, response, data) {
-		//
-		//     if (!error && response.statusCode === 200) {
-		// 			for(var i in data){
-		// 				socket.json.emit("set_OpenData",{
-		// 					latitude:data[i]["http://www.w3.org/2003/01/geo/wgs84_pos#lat"][0]["value"],
-		// 					longitude:data[i]["http://www.w3.org/2003/01/geo/wgs84_pos#long"][0]["value"]
-		// 				});
-		//       	socket.json.broadcast.to(id_room[socket.id]).emit("set_OpenData",{
-		// 					latitude:data[i]["http://www.w3.org/2003/01/geo/wgs84_pos#lat"][0]["value"],
-		// 					longitude:data[i]["http://www.w3.org/2003/01/geo/wgs84_pos#long"][0]["value"]
-		// 				});
-		// 			}
-		//     }
-		// })
 	});
 
 });
