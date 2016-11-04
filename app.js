@@ -41,6 +41,7 @@ io.sockets.on("connection",function(socket){
 		socket.broadcast.emit("reset_count",count);
 	});
 
+
 	//入室
 	socket.on("emit_from_client_in", function (data) {
 		if(!roomList[data]){
