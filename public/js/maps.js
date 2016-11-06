@@ -14,9 +14,19 @@ function initialize() {
     var opts = {
       zoom: 15,
       center: latlng,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      disableDefaultUI: true,
+      mapTypeControlOptions: { mapTypeIds: ['my_style', google.maps.MapTypeId.ROADMAP] }
     };
     var map = new google.maps.Map(mapdiv, opts);
+    var style =[{
+      featureType: 'all',
+      elementType: 'geometry',
+      stylers: [{ hue: '#6d4d38' }, { saturation: '-70' }, { gamma: '0.5' }]
+    }];
+    var lopanType = new google.maps.StyledMapType(style, {name: 'my_style'});
+    map.mapTypes.set('my_style', lopanType);
+    map.setMapTypeId('my_style');
 
     //コンテナ作成
     var container = document.createElement('div');
@@ -96,10 +106,16 @@ function initialize() {
         marker[data.id].addListener('click', function() { // マーカーをクリックしたとき
           click_infoWindow(data.id);
         });
+        //make_polygon(data.latitude,data.longitude);
       }else{
         marker[data.id].setPosition(new google.maps.LatLng(data.latitude,data.longitude));
       }
     });
+
+    function make_polygon(lat,long){
+      var pos = marker["my_marker"].getPosition();
+      var thete = Math.atan2(long-pos.lng(),lat-pos.lat);
+    }
 
     //他クライアントマーカークリック時処理
     function click_infoWindow(id){
