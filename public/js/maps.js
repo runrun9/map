@@ -110,7 +110,7 @@ function initialize() {
         make_vec(data.id,data.latitude,data.longitude);
       }else{
         marker[data.id].setPosition(new google.maps.LatLng(data.latitude,data.longitude));
-        move_vec(dataid,data.latitude,data.longitude);
+        move_vec(data.id,data.latitude,data.longitude);
       }
     });
 
