@@ -85,6 +85,11 @@ function initialize() {
         latitude: position.coords.latitude,
         longitude: position.coords.longitude
       });
+      // for(var i in vec){
+      //   if(vec.hasOwnProperty(i)){
+      //
+      //   }
+      // }
     }
 
     //接続時id取得
@@ -155,6 +160,8 @@ function initialize() {
     socket.on("disconnect_message",function(data){
       if(marker[data]){
         marker[data].setMap(null);
+        delete marker[data];
+        delete vec[data];
         console.log(data+"削除");
       }else{
         console.log(data+"削除失敗");
