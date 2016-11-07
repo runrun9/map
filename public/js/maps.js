@@ -114,7 +114,11 @@ function initialize() {
 
     function make_polygon(lat,long){
       var pos = marker["my_marker"].getPosition();
-      var thete = Math.atan2(long-pos.lng(),lat-pos.lat);
+      var thete = Math.atan2(long-pos.lng(),lat-pos.lat());
+      console.log(long);
+      console.log(pos.lng());
+      console.log(lat);
+      console.log(pos.lat());
       console.log(thete);
     }
 
