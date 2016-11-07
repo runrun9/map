@@ -121,7 +121,7 @@ function initialize() {
       console.log(pos.lat());
       console.log(thete);
       var vec_list = [
-        new google.maps.LatLng(pos.lat()+0.001*cos(thete), pos.lng()+0.001*sin(thete)),
+        new google.maps.LatLng(pos.lat()+0.001*Math.cos(thete), pos.lng()+0.001*Math.sin(thete)),
         new google.maps.LatLng(pos.lat(), pos.lng())
       ];
       var vec = new google.maps.Polyline({
