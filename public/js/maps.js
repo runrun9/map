@@ -126,7 +126,7 @@ function initialize() {
       ];
       vec[id] = new google.maps.Polyline({
       path: vec_list,
-      strokeColor: "#FF0000",
+      strokeColor: blue,
       strokeOpacity: 1.0,
       strokeWeight: 2
     });
@@ -139,9 +139,9 @@ function initialize() {
       var vec_list = [
         new google.maps.LatLng(pos.lat(), pos.lng()),
         new google.maps.LatLng(pos.lat()+0.0005*Math.cos(thete), pos.lng()+0.0005*Math.sin(thete)),
-        new google.maps.LatLng(pos.lat()+0.0005*Math.cos(thete)+0.0001*Math.cos(thete+Math.PI*1.25),pos.lng()+0.0005*Math.sin(thete)+0.0001*Math.sin(thete+Math.PI*1.25)),
+        new google.maps.LatLng(pos.lat()+0.0005*Math.cos(thete)+0.0001*Math.cos(thete+Math.PI*1.15),pos.lng()+0.0005*Math.sin(thete)+0.0001*Math.sin(thete+Math.PI*1.25)),
         new google.maps.LatLng(pos.lat()+0.0005*Math.cos(thete), pos.lng()+0.0005*Math.sin(thete)),
-        new google.maps.LatLng(pos.lat()+0.0005*Math.cos(thete)+0.0001*Math.cos(thete+Math.PI*0.75),pos.lng()+0.0005*Math.sin(thete)+0.0001*Math.sin(thete+Math.PI*0.75))
+        new google.maps.LatLng(pos.lat()+0.0005*Math.cos(thete)+0.0001*Math.cos(thete+Math.PI*0.85),pos.lng()+0.0005*Math.sin(thete)+0.0001*Math.sin(thete+Math.PI*0.75))
       ];
       vec[id].setPath(vec_list);
     }
