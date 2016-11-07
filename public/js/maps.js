@@ -126,7 +126,7 @@ function initialize() {
       ];
       vec[id] = new google.maps.Polyline({
       path: vec_list,
-      strokeColor: blue,
+      strokeColor: "deepskyblue",
       strokeOpacity: 1.0,
       strokeWeight: 2
     });
