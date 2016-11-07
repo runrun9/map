@@ -106,13 +106,13 @@ function initialize() {
         marker[data.id].addListener('click', function() { // マーカーをクリックしたとき
           click_infoWindow(data.id);
         });
-        make_polygon(data.latitude,data.longitude);
+        make_vec(data.latitude,data.longitude);
       }else{
         marker[data.id].setPosition(new google.maps.LatLng(data.latitude,data.longitude));
       }
     });
 
-    function make_polygon(lat,long){
+    function make_vec(lat,long){
       var pos = marker["my_marker"].getPosition();
       var thete = Math.atan2(long-pos.lng(),lat-pos.lat());
       console.log(long);
@@ -120,6 +120,17 @@ function initialize() {
       console.log(lat);
       console.log(pos.lat());
       console.log(thete);
+      var vec_list = [
+        new google.maps.LatLng(pos.lat()+0.001*cos(thete), pos.lng()+0.001*sin(thete)),
+        new google.maps.LatLng(pos.lat(), pos.lng())
+      ];
+      var vec = new google.maps.Polyline({
+      path: vec_list,
+      strokeColor: "#FF0000",
+      strokeOpacity: 1.0,
+      strokeWeight: 2
+    });
+      vec.setMap(map);
     }
 
     //他クライアントマーカークリック時処理
