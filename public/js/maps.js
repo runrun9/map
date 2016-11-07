@@ -117,14 +117,12 @@ function initialize() {
     function make_vec(id,lat,long){
       var pos = marker["my_marker"].getPosition();
       var thete = Math.atan2(long-pos.lng(),lat-pos.lat());
-      console.log(long);
-      console.log(pos.lng());
-      console.log(lat);
-      console.log(pos.lat());
-      console.log(thete);
       var vec_list = [
+        new google.maps.LatLng(pos.lat(), pos.lng()),
         new google.maps.LatLng(pos.lat()+0.0005*Math.cos(thete), pos.lng()+0.0005*Math.sin(thete)),
-        new google.maps.LatLng(pos.lat(), pos.lng())
+        new google.maps.LatLng(pos.lat()+0.0005*Math.cos(thete)+0.0001*Math.cos(thete+Math.PI*1.25),pos.lng()+0.0005*Math.sin(thete)+0.0001*Math.sin(thete+Math.PI*1.25)),
+        new google.maps.LatLng(pos.lat()+0.0005*Math.cos(thete), pos.lng()+0.0005*Math.sin(thete)),
+        new google.maps.LatLng(pos.lat()+0.0005*Math.cos(thete)+0.0001*Math.cos(thete+Math.PI*0.75),pos.lng()+0.0005*Math.sin(thete)+0.0001*Math.sin(thete+Math.PI*0.75))
       ];
       vec[id] = new google.maps.Polyline({
       path: vec_list,
@@ -138,14 +136,12 @@ function initialize() {
     function move_vec(id,lat,long){
       var pos = marker["my_marker"].getPosition();
       var thete = Math.atan2(long-pos.lng(),lat-pos.lat());
-      console.log(long);
-      console.log(pos.lng());
-      console.log(lat);
-      console.log(pos.lat());
-      console.log(thete);
       var vec_list = [
+        new google.maps.LatLng(pos.lat(), pos.lng()),
         new google.maps.LatLng(pos.lat()+0.0005*Math.cos(thete), pos.lng()+0.0005*Math.sin(thete)),
-        new google.maps.LatLng(pos.lat(), pos.lng())
+        new google.maps.LatLng(pos.lat()+0.0005*Math.cos(thete)+0.0001*Math.cos(thete+Math.PI*1.25),pos.lng()+0.0005*Math.sin(thete)+0.0001*Math.sin(thete+Math.PI*1.25)),
+        new google.maps.LatLng(pos.lat()+0.0005*Math.cos(thete), pos.lng()+0.0005*Math.sin(thete)),
+        new google.maps.LatLng(pos.lat()+0.0005*Math.cos(thete)+0.0001*Math.cos(thete+Math.PI*0.75),pos.lng()+0.0005*Math.sin(thete)+0.0001*Math.sin(thete+Math.PI*0.75))
       ];
       vec[id].setPath(vec_list);
     }
