@@ -4,6 +4,7 @@ var infoWindow=new Object();
 var count=0;
 var roomname=null;
 var id=null;
+var vec=new Object();
 
 function initialize() {
   $(function(){
@@ -106,13 +107,14 @@ function initialize() {
         marker[data.id].addListener('click', function() { // マーカーをクリックしたとき
           click_infoWindow(data.id);
         });
-        make_vec(data.latitude,data.longitude);
+        make_vec(data.id,data.latitude,data.longitude);
       }else{
         marker[data.id].setPosition(new google.maps.LatLng(data.latitude,data.longitude));
+        move_vec(dataid,data.latitude,data.longitude);
       }
     });
 
-    function make_vec(lat,long){
+    function make_vec(id,lat,long){
       var pos = marker["my_marker"].getPosition();
       var thete = Math.atan2(long-pos.lng(),lat-pos.lat());
       console.log(long);
@@ -121,16 +123,31 @@ function initialize() {
       console.log(pos.lat());
       console.log(thete);
       var vec_list = [
-        new google.maps.LatLng(pos.lat()+0.001*Math.cos(thete), pos.lng()+0.001*Math.sin(thete)),
+        new google.maps.LatLng(pos.lat()+0.0005*Math.cos(thete), pos.lng()+0.0005*Math.sin(thete)),
         new google.maps.LatLng(pos.lat(), pos.lng())
       ];
-      var vec = new google.maps.Polyline({
+      vec[id] = new google.maps.Polyline({
       path: vec_list,
       strokeColor: "#FF0000",
       strokeOpacity: 1.0,
       strokeWeight: 2
     });
-      vec.setMap(map);
+      vec[id].setMap(map);
+    }
+
+    function move_vec(id,lat,long){
+      var pos = marker["my_marker"].getPosition();
+      var thete = Math.atan2(long-pos.lng(),lat-pos.lat());
+      console.log(long);
+      console.log(pos.lng());
+      console.log(lat);
+      console.log(pos.lat());
+      console.log(thete);
+      var vec_list = [
+        new google.maps.LatLng(pos.lat()+0.0005*Math.cos(thete), pos.lng()+0.0005*Math.sin(thete)),
+        new google.maps.LatLng(pos.lat(), pos.lng())
+      ];
+      vec[id].setPath(vec_list);
     }
 
     //他クライアントマーカークリック時処理
