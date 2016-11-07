@@ -106,7 +106,7 @@ function initialize() {
         marker[data.id].addListener('click', function() { // マーカーをクリックしたとき
           click_infoWindow(data.id);
         });
-        //make_polygon(data.latitude,data.longitude);
+        make_polygon(data.latitude,data.longitude);
       }else{
         marker[data.id].setPosition(new google.maps.LatLng(data.latitude,data.longitude));
       }
@@ -115,6 +115,7 @@ function initialize() {
     function make_polygon(lat,long){
       var pos = marker["my_marker"].getPosition();
       var thete = Math.atan2(long-pos.lng(),lat-pos.lat);
+      console.log(thete);
     }
 
     //他クライアントマーカークリック時処理
