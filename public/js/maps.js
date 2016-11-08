@@ -120,7 +120,7 @@ function initialize() {
     });
 
     function make_vec(id,lat,long){
-      var radius = 0.0003;
+      var radius = 0.0002;
       var pos = marker["my_marker"].getPosition();
       var thete = Math.atan2(long-pos.lng(),lat-pos.lat());
       var vec_list = [
@@ -140,7 +140,7 @@ function initialize() {
     }
 
     function move_vec(id,lat,long){
-      var radius = 0.0003;
+      var radius = 0.0002;
       var pos = marker["my_marker"].getPosition();
       var thete = Math.atan2(long-pos.lng(),lat-pos.lat());
       var vec_list = [
