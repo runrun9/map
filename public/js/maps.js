@@ -126,9 +126,9 @@ function initialize() {
       var vec_list = [
         new google.maps.LatLng(pos.lat(), pos.lng()),
         new google.maps.LatLng(pos.lat()+radius*Math.cos(thete), pos.lng()+radius*Math.sin(thete)),
-        new google.maps.LatLng(pos.lat()+radius*Math.cos(thete)+0.0001*Math.cos(thete+Math.PI*1.1),pos.lng()+radius*Math.sin(thete)+0.0001*Math.sin(thete+Math.PI*1.25)),
+        new google.maps.LatLng(pos.lat()+radius*Math.cos(thete)+radius/4*Math.cos(thete+Math.PI*1.1),pos.lng()+radius*Math.sin(thete)+radius/4*Math.sin(thete+Math.PI*1.25)),
         new google.maps.LatLng(pos.lat()+radius*Math.cos(thete), pos.lng()+radius*Math.sin(thete)),
-        new google.maps.LatLng(pos.lat()+radius*Math.cos(thete)+0.0001*Math.cos(thete+Math.PI*0.9),pos.lng()+radius*Math.sin(thete)+0.0001*Math.sin(thete+Math.PI*0.75))
+        new google.maps.LatLng(pos.lat()+radius*Math.cos(thete)+radius/4*Math.cos(thete+Math.PI*0.9),pos.lng()+radius*Math.sin(thete)+radius/4*Math.sin(thete+Math.PI*0.75))
       ];
       vec[id] = new google.maps.Polyline({
       path: vec_list,
@@ -146,9 +146,9 @@ function initialize() {
       var vec_list = [
         new google.maps.LatLng(pos.lat(), pos.lng()),
         new google.maps.LatLng(pos.lat()+radius*Math.cos(thete), pos.lng()+radius*Math.sin(thete)),
-        new google.maps.LatLng(pos.lat()+radius*Math.cos(thete)+0.0001*Math.cos(thete+Math.PI*1.1),pos.lng()+radius*Math.sin(thete)+0.0001*Math.sin(thete+Math.PI*1.25)),
+        new google.maps.LatLng(pos.lat()+radius*Math.cos(thete)+radius/4*Math.cos(thete+Math.PI*1.1),pos.lng()+radius*Math.sin(thete)+radius/4*Math.sin(thete+Math.PI*1.25)),
         new google.maps.LatLng(pos.lat()+radius*Math.cos(thete), pos.lng()+radius*Math.sin(thete)),
-        new google.maps.LatLng(pos.lat()+radius*Math.cos(thete)+0.0001*Math.cos(thete+Math.PI*0.9),pos.lng()+radius*Math.sin(thete)+0.0001*Math.sin(thete+Math.PI*0.75))
+        new google.maps.LatLng(pos.lat()+radius*Math.cos(thete)+radius/4*Math.cos(thete+Math.PI*0.9),pos.lng()+radius*Math.sin(thete)+radius/4*Math.sin(thete+Math.PI*0.75))
       ];
       vec[id].setPath(vec_list);
     }
