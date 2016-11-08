@@ -120,14 +120,15 @@ function initialize() {
     });
 
     function make_vec(id,lat,long){
+      var radius = 0.0003;
       var pos = marker["my_marker"].getPosition();
       var thete = Math.atan2(long-pos.lng(),lat-pos.lat());
       var vec_list = [
         new google.maps.LatLng(pos.lat(), pos.lng()),
-        new google.maps.LatLng(pos.lat()+0.0005*Math.cos(thete), pos.lng()+0.0005*Math.sin(thete)),
-        new google.maps.LatLng(pos.lat()+0.0005*Math.cos(thete)+0.0001*Math.cos(thete+Math.PI*1.1),pos.lng()+0.0005*Math.sin(thete)+0.0001*Math.sin(thete+Math.PI*1.25)),
-        new google.maps.LatLng(pos.lat()+0.0005*Math.cos(thete), pos.lng()+0.0005*Math.sin(thete)),
-        new google.maps.LatLng(pos.lat()+0.0005*Math.cos(thete)+0.0001*Math.cos(thete+Math.PI*0.9),pos.lng()+0.0005*Math.sin(thete)+0.0001*Math.sin(thete+Math.PI*0.75))
+        new google.maps.LatLng(pos.lat()+radius*Math.cos(thete), pos.lng()+radius*Math.sin(thete)),
+        new google.maps.LatLng(pos.lat()+radius*Math.cos(thete)+0.0001*Math.cos(thete+Math.PI*1.1),pos.lng()+radius*Math.sin(thete)+0.0001*Math.sin(thete+Math.PI*1.25)),
+        new google.maps.LatLng(pos.lat()+radius*Math.cos(thete), pos.lng()+radius*Math.sin(thete)),
+        new google.maps.LatLng(pos.lat()+radius*Math.cos(thete)+0.0001*Math.cos(thete+Math.PI*0.9),pos.lng()+radius*Math.sin(thete)+0.0001*Math.sin(thete+Math.PI*0.75))
       ];
       vec[id] = new google.maps.Polyline({
       path: vec_list,
@@ -139,14 +140,15 @@ function initialize() {
     }
 
     function move_vec(id,lat,long){
+      var radius = 0.0003;
       var pos = marker["my_marker"].getPosition();
       var thete = Math.atan2(long-pos.lng(),lat-pos.lat());
       var vec_list = [
         new google.maps.LatLng(pos.lat(), pos.lng()),
-        new google.maps.LatLng(pos.lat()+0.0005*Math.cos(thete), pos.lng()+0.0005*Math.sin(thete)),
-        new google.maps.LatLng(pos.lat()+0.0005*Math.cos(thete)+0.0001*Math.cos(thete+Math.PI*1.1),pos.lng()+0.0005*Math.sin(thete)+0.0001*Math.sin(thete+Math.PI*1.25)),
-        new google.maps.LatLng(pos.lat()+0.0005*Math.cos(thete), pos.lng()+0.0005*Math.sin(thete)),
-        new google.maps.LatLng(pos.lat()+0.0005*Math.cos(thete)+0.0001*Math.cos(thete+Math.PI*0.9),pos.lng()+0.0005*Math.sin(thete)+0.0001*Math.sin(thete+Math.PI*0.75))
+        new google.maps.LatLng(pos.lat()+radius*Math.cos(thete), pos.lng()+radius*Math.sin(thete)),
+        new google.maps.LatLng(pos.lat()+radius*Math.cos(thete)+0.0001*Math.cos(thete+Math.PI*1.1),pos.lng()+radius*Math.sin(thete)+0.0001*Math.sin(thete+Math.PI*1.25)),
+        new google.maps.LatLng(pos.lat()+radius*Math.cos(thete), pos.lng()+radius*Math.sin(thete)),
+        new google.maps.LatLng(pos.lat()+radius*Math.cos(thete)+0.0001*Math.cos(thete+Math.PI*0.9),pos.lng()+radius*Math.sin(thete)+0.0001*Math.sin(thete+Math.PI*0.75))
       ];
       vec[id].setPath(vec_list);
     }
