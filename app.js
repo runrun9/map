@@ -1,9 +1,9 @@
 var express = require("express"),
 	app = express(),
 	routes = require("./routes/routes"),
-	http = require("http").Server(app);
+	http_req = require("http"),
+	http = http_req.Server(app);
 var io = require('socket.io').listen(http);
-var http_req = require("http");
 
 var count=0;
 var roomList=new Object();
@@ -23,8 +23,9 @@ io.sockets.on("connection",function(socket){
 	socket.emit("reset_count",count);
 	socket.broadcast.emit("reset_count",count);
 
+	//位置情報取得
 	socket.on("emit_from_client_point",function(data){
-		//console.log(socket.id+" : "+data.latitude+" , "+data.longitude+" , to "+id_room[socket.id]+" , count : "+count);
+		console.log(socket.id+" : "+data.latitude+" , "+data.longitude+" , to "+id_room[socket.id]+" , count : "+count);
 		socket.json.broadcast.to(id_room[socket.id]).emit("emit_from_server_point",{
 			id: socket.id,
 			room: id_room[socket.id],

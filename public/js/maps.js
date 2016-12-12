@@ -70,7 +70,9 @@ function initialize() {
       });
 
       //GPS更新
-      var options = { enableHighAccuracy: true };
+      var options = {
+        maximumAge : 10,
+        enableHighAccuracy: true };
       watchId = navigator.geolocation.watchPosition(onSuccess,errorCallback,options);
     }
     function errorCallback(error) {
