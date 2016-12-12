@@ -25,7 +25,7 @@ io.sockets.on("connection",function(socket){
 
 	//位置情報取得
 	socket.on("emit_from_client_point",function(data){
-		console.log(socket.id+" : "+data.latitude+" , "+data.longitude+" , to "+id_room[socket.id]+" , count : "+count);
+		// console.log(socket.id+" : "+data.latitude+" , "+data.longitude+" , to "+id_room[socket.id]+" , count : "+count);
 		socket.json.broadcast.to(id_room[socket.id]).emit("emit_from_server_point",{
 			id: socket.id,
 			room: id_room[socket.id],
