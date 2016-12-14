@@ -1,9 +1,10 @@
 var express = require("express"),
 	app = express(),
 	routes = require("./routes/routes"),
-	http = require("http").Server(app);
+	http_req = require("http"),
+	http = http_req.Server(app);
 var io = require('socket.io').listen(http);
-var http_req = require("http");
+
 
 var count=0;
 var roomList=new Object();
