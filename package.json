@@ -2,8 +2,8 @@
   "name": "Lunchat",
   "version": "0.0.1",
   "engine": {
-    "node": "7.2.1",
-    "npm": "4.0.2"
+    "node": "v7.2.X",
+    "npm": "4.0.X"
   },
   "dependencies": {
     "express": "4.13.1",
