@@ -71,8 +71,9 @@ function initialize() {
 
       //GPS更新
       var options = {
-        maximumAge : 100,
-        enableHighAccuracy: true };
+        enableHighAccuracy: true,
+        maximumAge: 100
+       };
       watchId = navigator.geolocation.watchPosition(onSuccess,errorCallback,options);
     }
     function errorCallback(error) {

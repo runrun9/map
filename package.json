@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "engine": {
     "node": "0.10.25",
-    "npm": "4.0.2"
+    "npm": "4.0.2",
   },
   "dependencies": {
     "express": "4.13.1",
