@@ -8,7 +8,7 @@ var io = require('socket.io').listen(http);
 var count=0;
 var roomList=new Object();
 var id_room=new Object();
-
+io.set("transports",["websocket"]);
 app.use(express.static(__dirname+"/public"));
 http.listen(process.env.PORT || 3000);
 console.log("server starting");
