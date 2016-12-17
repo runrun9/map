@@ -62,7 +62,7 @@ io.sockets.on("connection",function(socket){
 			socket.join(data);
 			id_room[socket.id]=data;
 			console.log("joined : "+data);
-			console.log("count : "+roomList[data]);
+			// console.log("count : "+roomList[data]);
 		}
 	});
 
