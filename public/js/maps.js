@@ -1,10 +1,11 @@
-﻿var fps=1000/30;
-var marker=new Object();
-var infoWindow=new Object();
-var count=0;
-var roomname=null;
-var id=null;
-var vec=new Object();
+﻿var fps = 1000/30;
+var marker = new Object();
+var infoWindow = new Object();
+var count = 0;
+var roomname = null;
+var id = null;
+var vec = new Object();
+var randomID = Math.floor(Math.random()*100)
 
 function initialize() {
   $(function(){
@@ -86,13 +87,9 @@ function initialize() {
       console.log("GPS更新");
       socket.json.emit("emit_from_client_point",{
         latitude: position.coords.latitude,
-        longitude: position.coords.longitude
+        longitude: position.coords.longitude,
+        rand:randomID
       });
-      // for(var i in vec){
-      //   if(vec.hasOwnProperty(i)){
-      //
-      //   }
-      // }
     }
 
     //接続時id取得
