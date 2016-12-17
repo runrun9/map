@@ -21,8 +21,10 @@ app.get("/json",routes.json)
 
 io.sockets.on("connection",function(socket){
 	count++;
-	//id送信
+	//クライアントへコネクションIDを送信する
 	socket.emit("emit_id",socket.id);
+	//再接続時のroom入室処理
+	socket.emit("reconnection_room");
 	socket.emit("reset_count",count);
 	socket.broadcast.emit("reset_count",count);
 

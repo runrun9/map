@@ -173,7 +173,6 @@ function initialize() {
     //同時接続人数reset
     socket.on("reset_count",function(data){
       count=data;
-      console.log(data);
       container.innerText = "同時接続人数 : "+count;
     });
 
@@ -199,6 +198,12 @@ function initialize() {
         map: map,
         icon: "blue2.png"
       });
+    });
+
+    socket.on("reconnection_room",function(){
+      if(roomname){
+        socket.emit("emit_from_client_in",roomname);
+      }
     });
 
     //ループ
