@@ -8,7 +8,7 @@ var vec=new Object();
 
 function initialize() {
   $(function(){
-    var socket = io.connect();
+    var socket = io.connect({transports: ['websocket']});
     //map表示
     var mapdiv = document.getElementById("map_canvas");
     var latlng = new google.maps.LatLng(35.681382, 139.766084);
