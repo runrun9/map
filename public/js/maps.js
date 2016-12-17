@@ -5,7 +5,6 @@ var count = 0;
 var roomname = null;
 var id = null;
 var vec = new Object();
-var randomID = Math.floor(Math.random()*100)
 
 function initialize() {
   $(function(){
@@ -87,8 +86,7 @@ function initialize() {
       console.log("GPS更新");
       socket.json.emit("emit_from_client_point",{
         latitude: position.coords.latitude,
-        longitude: position.coords.longitude,
-        rand:randomID
+        longitude: position.coords.longitude
       });
     }
 
