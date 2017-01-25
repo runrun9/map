@@ -112,10 +112,10 @@ function initialize() {
         marker[data.id].addListener('click', function() { // マーカーをクリックしたとき
           click_infoWindow(data.id);
         });
-        make_vec(data.id,data.latitude,data.longitude);
+        // make_vec(data.id,data.latitude,data.longitude);
       }else{
         marker[data.id].setPosition(new google.maps.LatLng(data.latitude,data.longitude));
-        move_vec(data.id,data.latitude,data.longitude);
+        // move_vec(data.id,data.latitude,data.longitude);
       }
     });
 
