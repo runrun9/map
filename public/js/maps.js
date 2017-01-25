@@ -103,7 +103,8 @@ function initialize() {
         marker[data.id] = new google.maps.Marker({
         position: new google.maps.LatLng(data.latitude,data.longitude),
         map: map,
-        title: data.id
+        title: data.id,
+        icon: blue-dot.png
         });
         //吹き出し作成
         infoWindow[data.id] = new google.maps.InfoWindow({
