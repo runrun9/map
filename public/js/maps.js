@@ -61,7 +61,8 @@ function initialize() {
       marker["my_marker"] = new google.maps.Marker({
         position: new google.maps.LatLng(position.coords.latitude,position.coords.longitude),
         map: map,
-        title: "自分"
+        title: "自分",
+        color:0xFF0000
       });
       //吹き出し作成
       infoWindow[id] = new google.maps.InfoWindow();

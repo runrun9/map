@@ -55,7 +55,6 @@ io.sockets.on("connection",function(socket){
 			socket.join(data);
 			id_room[socket.id]=data;
 			console.log("create : "+data);
-			console.log("count : "+roomList[data]);
 		}
 		else{
 			roomList[data]++;
