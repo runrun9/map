@@ -3,5 +3,5 @@
 通信プロトコルはWebSocketを使用
 同じroomに入室しているユーザーと同期をとります
 
-***DEMO***
+## DEMO
 https://sheltered-lowlands-95427.herokuapp.com
